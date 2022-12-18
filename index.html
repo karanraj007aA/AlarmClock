@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alarm Clock Assignment</title>
+    <style>
+        body{
+            background-color: aquamarine;
+            /* border: 2px solid black; */
+            border-radius: 5px;
+            height: auto;
+            width: auto;
+            padding-bottom: 40px;
+            
+        
+        }
+        h1:hover{
+            background-color: rgb(70, 70, 6);
+        }
+        h3:hover{
+            background-color: rgb(112, 112, 67);
+        }
+
+    #center{
+        /* display:
+        justify-content: center;
+        align-items: center; */
+        /* align-content: space-between; */
+        border: 3px solid;
+        height: 400px;
+        width: 600px;
+        margin-top: 20px;
+        margin-left: 30%;
+        background-color: black;
+        color: white;
+    }
+    
+    #setAlrm{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    input{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    h1,h3{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    #alarm{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    #button{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    #text{
+        
+        /* border: 2px solid red; */
+        height: 40px;
+        width: 350px;
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    button{
+        margin-top: 20px;
+        margin-left: 80px;
+    }
+    </style>>
+</head>
+<body>
+    
+    <div id="center">
+        <h1 id="text">Alarm Clock Application</h1>
+      <div id="1">
+         <button id="setAlrm" onclick="setAlrmTime()">Set Alarm Time</button><br>
+        <input type="time" name="alarmTimeSelect" id="alarmTimeSelect" value="00:00"><br>
+      </div>
+        <h1 id="clock"></h1>
+        <h3 id="info"></h3>
+        <h3 id="alarm">Alarm not set</h3>
+      
+        <button onclick="disable()">Delete Alarm</button>
+       
+    </div>
+</body>
+    <script>
+        
+    var alHours = '';
+    var alMinutes = '';
+    var alarmTime = '';
+
+
+function digitalClock(){
+
+    var date = new Date();
+    var hours = date.getHours() + '';
+    var minutes = date.getMinutes() + '';
+    var seconds = date.getSeconds() + '';
+    var day = date.getDay();
+
+    if(hours.length < 2) {
+        hours = '0' + hours;
+    }
+
+    if(minutes.length < 2) {
+        minutes = '0' + minutes;
+    }
+
+    if(seconds.length < 2) {
+        seconds = '0' + seconds;
+    }
+
+    var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    var clock =weekDays[day] + ' ' + hours + ':' + minutes + ':' + seconds;
+    document.getElementById('clock').innerHTML = clock;
+
+    
+
+    if (minutes == alMinutes && hours == alHours && date.getSeconds() < 12 ) {
+        alarmSound();
+        setTimeout(()=>{
+            // console.log("Alarm Played");
+                alarmSound();
+        },300000);
+        setTimeout(()=>{
+            // console.log("Alarm Played 2");
+                alarmSound();
+        },60000);
+    }    
+
+}
+
+function setAlrmTime() {
+    var timeString = String(document.getElementById("alarmTimeSelect").value);
+    alHours = timeString.charAt(0) + timeString.charAt(1);
+    alMinutes = timeString.charAt(3) + timeString.charAt(4);
+    document.getElementById("alarm").innerHTML = 'Alarm: ' + alHours + ':' + alMinutes;  
+    var info = document.getElementById('info');
+    info.innerHTML="The alarm will snooze after 5 and 10 minutes of set alarm time"  
+}
+
+
+
+function alarmSound() {
+    var audio = new Audio('audio');
+    audio.src = "alarmsound.mp3";
+    audio.play();
+    }  
+    function disable(){
+        console.log("Enter disble");
+        var time_tag = document.getElementById('alarmTimeSelect');
+        time_tag.value='';
+        console.log();
+    }
+
+digitalClock();
+setInterval(digitalClock, 1000);
+    </script>
+</html>

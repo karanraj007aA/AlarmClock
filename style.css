@@ -1,0 +1,40 @@
+#center{
+    /* display:
+    justify-content: center;
+    align-items: center; */
+    /* align-content: space-between; */
+    border: 3px solid;
+    height: 400px;
+    width: 800px;
+}
+
+#setAlrm{
+    margin-top: 20px;
+    margin-left: 300px;
+}
+input{
+    margin-top: 20px;
+    margin-left: 320px;
+}
+h1,h3{
+    margin-top: 20px;
+    margin-left: 280px;
+}
+#alarm{
+    margin-top: 20px;
+    margin-left: 300px;
+}
+#button{
+    margin-top: 20px;
+    margin-left: 320px;
+}
+#text{
+    
+    border: 2px solid red;
+    height: 40px;
+    width: 350px;
+}
+button{
+    margin-top: 20px;
+    margin-left: 320px;
+}
